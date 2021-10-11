@@ -112,14 +112,14 @@ export default class TransactionScreen extends React.Component {
   };
 
   initiateCycleReturn = async () => {
-    //add a transaction
+    //agrega una transacción
     db.collection("transactions").add({
       studentId: this.state.scannedStudentId,
       cycleId: this.state.scannedCycleId,
       date: firebase.firestore.Timestamp.now().toDate(),
       transactionType: "Return"
     });
-    //change cycle status
+    //cambia el estado de la bicicleta
    var cycleissue = db.collection("cycle")
    cycleissue.where("cycleId","==", this.state.scannedCycleId).get()
    .then((snapshot)=>{
@@ -258,10 +258,10 @@ export default class TransactionScreen extends React.Component {
       if (isStudentEligible) {
         this.initiateCycleReturn();
         
-       // Alert("Thank you for returning it to the School!");
-       // alert("Thank you for returning it to the School!");
-       // Alert.alert(Thank you for returning it to the School!);
-       // Alert.alert("Thank you for returning it to the School!");
+       // Alert("Gracias por devolverla a la escuela");
+       // alert("Gracias por devolverla a la escuela");
+       // Alert.alert(Gracias por devolverla a la escuela);
+       // Alert.alert("Gracias por devolverla a la escuela");
 
       }
     }
