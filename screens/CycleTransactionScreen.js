@@ -195,7 +195,7 @@ export default class TransactionScreen extends React.Component {
         scannedCycleId: ""
       });
       isStudentEligible = false;
-      Alert.alert("The student id doesn't exist in the database!");
+      Alert.alert("La id del alumno no existe en la base de datos");
     } else {
       studentRef.docs.map(doc => {
         var student = doc.data();
@@ -203,7 +203,7 @@ export default class TransactionScreen extends React.Component {
           isStudentEligible = true;
         } else {
           isStudentEligible = false;
-          Alert.alert("The student has already issued 2 cycles!");
+          Alert.alert("El alumno ya ha pedido 2 bicicletas");
           this.setState({
             scannedStudentId: "",
             scannedCycleId: ""
@@ -228,7 +228,7 @@ export default class TransactionScreen extends React.Component {
         isStudentEligible = true;
       } else {
         isStudentEligible = false;
-        Alert.alert("The cycle wasn't issued by this student!");
+        Alert.alert("La bicicleta no ha sido emitida a este alumno");
         this.setState({
           scannedStudentId: "",
           scannedCycleId: ""
@@ -242,7 +242,7 @@ export default class TransactionScreen extends React.Component {
     var transactionType = await this.checkCycleEligibility();
 
     if (!transactionType) {
-      Alert.alert("The cycle doesn't exist in the database!");
+      Alert.alert("La bicicleta no existe en la base de datos");
       this.setState({
         scannedStudentId: "",
         scannedCycleId: ""
@@ -251,7 +251,7 @@ export default class TransactionScreen extends React.Component {
       var isStudentEligible = await this.checkStudentEligibilityForCycleIssue();
       if (isStudentEligible) {
         this.initiateCycleIssue();
-        Alert.alert("Cycle issued to the student!");
+        Alert.alert("Bicicleta emitida al alumno");
       }
     } else {
       var isStudentEligible = await this.checkStudentEligibilityForReturn();
@@ -287,12 +287,12 @@ export default class TransactionScreen extends React.Component {
               source={require("../assets/cycle.jpg")}
               style={{ width: 200, height: 200 }}
             />
-            <Text style={{ textAlign: "center", fontSize: 30 }}>LET'S RIDE</Text>
+            <Text style={{ textAlign: "center", fontSize: 30 }}>VAMOS A MONTAR</Text>
           </View>
           <View style={styles.inputView}>
             <TextInput
               style={styles.inputBox}
-              placeholder="Cycle Id"
+              placeholder="Id de la bicicleta"
               onChangeText={text => {
                 this.setState({
                   scannedCycleId: text
@@ -306,14 +306,14 @@ export default class TransactionScreen extends React.Component {
                 this.getCameraPermissions("CycleId");
               }}
             >
-              <Text style={styles.buttonText}>Scan</Text>
+              <Text style={styles.buttonText}>Escanear</Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.inputView}>
             <TextInput
               style={styles.inputBox}
-              placeholder="Student Id"
+              placeholder="Id del alumno"
               onChangeText={text => {
                 this.setState({
                   scannedStudentId: text
@@ -327,7 +327,7 @@ export default class TransactionScreen extends React.Component {
                 this.getCameraPermissions("StudentId");
               }}
             >
-              <Text style={styles.buttonText}>Scan</Text>
+              <Text style={styles.buttonText}>Escanear</Text>
             </TouchableOpacity>
           </View>
           <Text style={styles.transactionAlert}>
@@ -339,7 +339,7 @@ export default class TransactionScreen extends React.Component {
               var transactionMessage = this.handleTransaction();
             }}
           >
-            <Text style={styles.submitButtonText}>Submit</Text>
+            <Text style={styles.submitButtonText}>Enviar</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
       );
